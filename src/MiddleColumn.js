@@ -1,59 +1,57 @@
 import logo from './logo.svg';
 import React from 'react';
 import TypeButton from './TypeButton';
+import { getPokemon } from './getPokemon';
+import { changeType } from './changeType';
 
 function MiddleColumn() {
   //     variable - 'return function at the end of logic'
   const [selectedTypes, setSelectedTypes] = React.useState([null, null]);
+  const [currentPokemon, setCurrentPokemon] = React.useState(null);
 
-  const changeType = (type) => {
-    //
-    console.log('type set:', type);
-
-    // If no types, save as first type
-    // else if one type, if not same as 1st type, save as 2nd type 
-    //                   otherwise disregard
-    // else disregard
-    if (selectedTypes[0] == null) { // if empty
-      setSelectedTypes([type, null]);
-    }
-    else if (selectedTypes[1] == null) { // if only one element
-      if (selectedTypes[0] !== type) {
-        setSelectedTypes([selectedTypes[0], type]);
-      }
-      else {
-        setSelectedTypes([null, null]);
-      }
-    }
-    else { // if full
-      if (selectedTypes[0] === type) {
-        setSelectedTypes([selectedTypes[1], null]);
-      }
-      else if (selectedTypes[1] === type) {
-        setSelectedTypes([selectedTypes[0], null]);
-      }
-    }
-  };
+  if (currentPokemon === null) {
+    getPokemon(setCurrentPokemon, Math.ceil(Math.random() * 151));
+  }
+  console.log(currentPokemon);
 
   return (
     <div>
       <h1>Guess the type</h1>
       <img
-        src='https://www.giantbomb.com/a/uploads/scale_small/13/135472/1891761-004charmander.png'
-        alt='pokemon here'
+        src={
+          currentPokemon === null
+            ? 'https://wiki.p-insurgence.com/images/0/09/722.png'
+            : currentPokemon.img
+        }
+        alt='pokemon'
       ></img>
-      <b />
+      <b style={{ marginbottom: 50 }} />
       <p className='has-text-centered'>Select pokemon types:</p>
 
       <div className='buttons'>
-        <TypeButton type='fire' changeType={changeType} />
-
-        <TypeButton type='water' changeType={changeType} />
-
-        <TypeButton type='grass' changeType={changeType} />
+        <TypeButton
+          type='fire'
+          changeType={() => changeType('fire', selectedTypes, setSelectedTypes)}
+          selectedTypes={selectedTypes}
+        />
+        <TypeButton
+          type='water'
+          changeType={() =>
+            changeType('water', selectedTypes, setSelectedTypes)
+          }
+          selectedTypes={selectedTypes}
+        />
+        <TypeButton
+          type='grass'
+          changeType={() =>
+            changeType('grass', selectedTypes, setSelectedTypes)
+          }
+          selectedTypes={selectedTypes}
+        />
       </div>
-      <p>
-        Selected types: {selectedTypes[0]} {(selectedTypes[1] !== null) ? ',' : ''} {selectedTypes[1]}
+      <p className='has-text-centered'>
+        Selected types: {selectedTypes[0]}
+        {selectedTypes[1] !== null ? ',' : ''} {selectedTypes[1]}
       </p>
     </div>
   );
