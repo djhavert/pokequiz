@@ -5,17 +5,34 @@ import TypeButton from './TypeButton';
 function MiddleColumn() {
   //     variable - 'return function at the end of logic'
   const [selectedTypes, setSelectedTypes] = React.useState([null, null]);
-  const [steelType, setSteelType] = React.useState(false);
-
-  const handleTypeChange = (type1, type2) => {
-    setSelectedTypes([type1, type2]);
-  };
 
   const changeType = (type) => {
     //
     console.log('type set:', type);
 
-    handleTypeChange(type, null);
+    // If no types, save as first type
+    // else if one type, if not same as 1st type, save as 2nd type 
+    //                   otherwise disregard
+    // else disregard
+    if (selectedTypes[0] == null) { // if empty
+      setSelectedTypes([type, null]);
+    }
+    else if (selectedTypes[1] == null) { // if only one element
+      if (selectedTypes[0] !== type) {
+        setSelectedTypes([selectedTypes[0], type]);
+      }
+      else {
+        setSelectedTypes([null, null]);
+      }
+    }
+    else { // if full
+      if (selectedTypes[0] === type) {
+        setSelectedTypes([selectedTypes[1], null]);
+      }
+      else if (selectedTypes[1] === type) {
+        setSelectedTypes([selectedTypes[0], null]);
+      }
+    }
   };
 
   return (
@@ -36,7 +53,7 @@ function MiddleColumn() {
         <TypeButton type='grass' changeType={changeType} />
       </div>
       <p>
-        Selected types: {selectedTypes[0]}, {selectedTypes[1]}
+        Selected types: {selectedTypes[0]} {(selectedTypes[1] !== null) ? ',' : ''} {selectedTypes[1]}
       </p>
     </div>
   );
