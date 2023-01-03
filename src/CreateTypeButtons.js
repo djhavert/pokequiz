@@ -12,6 +12,7 @@ function CreateTypeButtons({
       {types.map((type) => {
         return (
           <TypeButton
+            key={type}
             type={type}
             changeType={() => changeType(type, selectedTypes, setSelectedTypes)}
             selectedTypes={selectedTypes}
