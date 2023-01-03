@@ -12,7 +12,6 @@ export async function getPokemon(setCurrentPokemon, number) {
   fetch(url, options)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       setCurrentPokemon({
         img: data.sprites.other['official-artwork'].front_default,
         type1: data.types[0].type.name,
