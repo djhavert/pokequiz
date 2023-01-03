@@ -6,7 +6,6 @@ import SubmitButton from './SubmitButton';
 import { getPokemon } from './getPokemon';
 import { changeType } from './changeType';
 import { getTypes } from './getTypes';
-import { type } from '@testing-library/user-event/dist/type';
 
 function MiddleColumn() {
   //     variable - 'return function at the end of logic'
