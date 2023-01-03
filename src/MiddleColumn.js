@@ -2,15 +2,19 @@ import logo from './logo.svg';
 import React from 'react';
 import TypeButton from './TypeButton';
 import CreateTypeButtons from './CreateTypeButtons';
+import SubmitButton from './SubmitButton';
 import { getPokemon } from './getPokemon';
 import { changeType } from './changeType';
 import { getTypes } from './getTypes';
+import { type } from '@testing-library/user-event/dist/type';
 
 function MiddleColumn() {
   //     variable - 'return function at the end of logic'
   const [selectedTypes, setSelectedTypes] = React.useState([null, null]);
   const [currentPokemon, setCurrentPokemon] = React.useState(null);
   const [pokeTypes, setPokeTypes] = React.useState(null);
+  const [typesAreCorrect, setTypesAreCorrect] = React.useState(null);
+  const [streak, setStreak] = React.useState(0);
 
   if (pokeTypes === null) {
     getTypes(setPokeTypes);
@@ -18,9 +22,21 @@ function MiddleColumn() {
     getPokemon(setCurrentPokemon, Math.ceil(Math.random() * 151));
   }
 
+  if (typesAreCorrect) {
+    setTypesAreCorrect(null);
+    setCurrentPokemon(null);
+    setSelectedTypes([null, null]);
+    setStreak(streak + 1);
+  } else if (typesAreCorrect === false) {
+    alert('Incorrect types');
+    setTypesAreCorrect(null);
+    setCurrentPokemon(null);
+    setSelectedTypes([null, null]);
+    setStreak(0);
+  }
+
   return (
     <div>
-      <h1>Guess the type</h1>
       <img
         src={
           currentPokemon === null
@@ -29,7 +45,7 @@ function MiddleColumn() {
         }
         alt='pokemon'
       ></img>
-      <b style={{ marginbottom: 50 }} />
+      <b />
       <p className='has-text-centered'>Select pokemon types:</p>
 
       {pokeTypes ? (
@@ -42,11 +58,13 @@ function MiddleColumn() {
       ) : (
         <div />
       )}
-
-      <p className='has-text-centered'>
-        Selected types: {selectedTypes[0]}
-        {selectedTypes[1] !== null ? ',' : ''} {selectedTypes[1]}
-      </p>
+      <br />
+      <SubmitButton
+        setTypesAreCorrect={setTypesAreCorrect}
+        selectedTypes={selectedTypes}
+        currentPokemon={currentPokemon}
+      />
+      <p>streak: {streak}</p>
     </div>
   );
 }
