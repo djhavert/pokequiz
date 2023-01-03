@@ -1,5 +1,5 @@
-import React from "react";
-import TypeButton from "./TypeButton";
+import React from 'react';
+import TypeButton from './TypeButton';
 
 function CreateTypeButtons({
   types,
@@ -8,9 +8,8 @@ function CreateTypeButtons({
   setSelectedTypes,
 }) {
   return (
-    <div className="buttons">
+    <div className='buttons'>
       {types.map((type) => {
-        console.log(type);
         return (
           <TypeButton
             type={type}
