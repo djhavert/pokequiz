@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import React from "react";
 import TypeButton from "./TypeButton";
+import CreateTypeButtons from "./CreateTypeButtons"
 import { getPokemon } from "./getPokemon";
 import { changeType } from "./changeType";
 import { getTypes } from "./getTypes";
@@ -36,27 +37,9 @@ function MiddleColumn() {
       <b style={{ marginbottom: 50 }} />
       <p className="has-text-centered">Select pokemon types:</p>
 
-      <div className="buttons">
-        <TypeButton
-          type="fire"
-          changeType={() => changeType("fire", selectedTypes, setSelectedTypes)}
-          selectedTypes={selectedTypes}
-        />
-        <TypeButton
-          type="water"
-          changeType={() =>
-            changeType("water", selectedTypes, setSelectedTypes)
-          }
-          selectedTypes={selectedTypes}
-        />
-        <TypeButton
-          type="grass"
-          changeType={() =>
-            changeType("grass", selectedTypes, setSelectedTypes)
-          }
-          selectedTypes={selectedTypes}
-        />
-      </div>
+      {pokeTypes ? <CreateTypeButtons types={pokeTypes} changeType={changeType} selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes}/> : <div/> }
+
+      
       <p className="has-text-centered">
         Selected types: {selectedTypes[0]}
         {selectedTypes[1] !== null ? "," : ""} {selectedTypes[1]}
