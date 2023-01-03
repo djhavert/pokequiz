@@ -1,10 +1,12 @@
 import logo from './logo.svg';
 import React from 'react';
+import colorChart from './colorChart';
 
 function TypeButton({ type, changeType, selectedTypes }) {
   return (
     <button
-      className={buttonColor(type, selectedTypes)}
+      className='button'
+      style={{ backgroundColor: buttonColor(type, selectedTypes) }}
       onClick={() => changeType(type)}
     >
       {type}
@@ -13,9 +15,9 @@ function TypeButton({ type, changeType, selectedTypes }) {
 }
 
 function buttonColor(type, selectedTypes) {
-  if (selectedTypes[0] === type || selectedTypes[1] === type)
-    return 'button is-dark';
-  else return 'button';
+  if (selectedTypes[0] === type || selectedTypes[1] === type) {
+    return colorChart[type];
+  } else return;
 }
 
 export default TypeButton;
