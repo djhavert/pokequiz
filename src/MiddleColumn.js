@@ -1,10 +1,10 @@
-import logo from "./logo.svg";
-import React from "react";
-import TypeButton from "./TypeButton";
-import CreateTypeButtons from "./CreateTypeButtons"
-import { getPokemon } from "./getPokemon";
-import { changeType } from "./changeType";
-import { getTypes } from "./getTypes";
+import logo from './logo.svg';
+import React from 'react';
+import TypeButton from './TypeButton';
+import CreateTypeButtons from './CreateTypeButtons';
+import { getPokemon } from './getPokemon';
+import { changeType } from './changeType';
+import { getTypes } from './getTypes';
 
 function MiddleColumn() {
   //     variable - 'return function at the end of logic'
@@ -14,14 +14,9 @@ function MiddleColumn() {
 
   if (pokeTypes === null) {
     getTypes(setPokeTypes);
-  }
-  else if (currentPokemon === null) {
+  } else if (currentPokemon === null) {
     getPokemon(setCurrentPokemon, Math.ceil(Math.random() * 151));
   }
-  
-
-  console.log(currentPokemon);
-  console.log(pokeTypes);
 
   return (
     <div>
@@ -29,20 +24,28 @@ function MiddleColumn() {
       <img
         src={
           currentPokemon === null
-            ? "https://wiki.p-insurgence.com/images/0/09/722.png"
+            ? 'https://wiki.p-insurgence.com/images/0/09/722.png'
             : currentPokemon.img
         }
-        alt="pokemon"
+        alt='pokemon'
       ></img>
       <b style={{ marginbottom: 50 }} />
-      <p className="has-text-centered">Select pokemon types:</p>
+      <p className='has-text-centered'>Select pokemon types:</p>
 
-      {pokeTypes ? <CreateTypeButtons types={pokeTypes} changeType={changeType} selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes}/> : <div/> }
+      {pokeTypes ? (
+        <CreateTypeButtons
+          types={pokeTypes}
+          changeType={changeType}
+          selectedTypes={selectedTypes}
+          setSelectedTypes={setSelectedTypes}
+        />
+      ) : (
+        <div />
+      )}
 
-      
-      <p className="has-text-centered">
+      <p className='has-text-centered'>
         Selected types: {selectedTypes[0]}
-        {selectedTypes[1] !== null ? "," : ""} {selectedTypes[1]}
+        {selectedTypes[1] !== null ? ',' : ''} {selectedTypes[1]}
       </p>
     </div>
   );
