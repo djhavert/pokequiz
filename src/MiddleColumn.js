@@ -43,6 +43,12 @@ function MiddleColumn() {
             : currentPokemon.img
         }
         alt='pokemon'
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',
+          height: '30%',
+        }}
       ></img>
       <b />
       <p className='has-text-centered'>Select pokemon types:</p>
