@@ -1,13 +1,13 @@
 import logo from './logo.svg';
 import React from 'react';
-import TypeButton from './TypeButton';
 import CreateTypeButtons from './CreateTypeButtons';
 import SubmitButton from './SubmitButton';
+import chooseRandomPokeID from './chooseRandomPokeID'
 import { getPokemon } from './getPokemon';
 import { changeType } from './changeType';
 import { getTypes } from './getTypes';
 
-function MiddleColumn() {
+function MiddleColumn(selectedGens) {
   //     variable - 'return function at the end of logic'
   const [selectedTypes, setSelectedTypes] = React.useState([null, null]);
   const [currentPokemon, setCurrentPokemon] = React.useState(null);
@@ -18,7 +18,8 @@ function MiddleColumn() {
   if (pokeTypes === null) {
     getTypes(setPokeTypes);
   } else if (currentPokemon === null) {
-    getPokemon(setCurrentPokemon, Math.ceil(Math.random() * 151));
+    const pokeID = chooseRandomPokeID({selectedGens});
+    getPokemon(setCurrentPokemon, pokeID);
   }
 
   if (typesAreCorrect) {
@@ -27,7 +28,14 @@ function MiddleColumn() {
     setSelectedTypes([null, null]);
     setStreak(streak + 1);
   } else if (typesAreCorrect === false) {
-    alert('Incorrect type! Correct type(s): ' + currentPokemon.type1 + " " + currentPokemon.type2);
+    let messageWrong = 'Incorrect! ';
+    if (currentPokemon.type2 == null) {
+      messageWrong = messageWrong + 'Correct type is ' + currentPokemon.type1;
+    }
+    else {
+      messageWrong = messageWrong + 'Correct types are ' + currentPokemon.type1 + ' and ' + currentPokemon.type2;
+    }
+    alert(messageWrong);
     setTypesAreCorrect(null);
     setCurrentPokemon(null);
     setSelectedTypes([null, null]);

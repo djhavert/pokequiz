@@ -2,18 +2,14 @@ import React from 'react';
 import { getGens } from './getGens';
 import CreateGenButtons from './CreateGenButtons'
 
-function LeftColumn() {
+function LeftColumn({gens, setGens, selectedGens, setSelectedGens}) {
   // variable - 'return function at the end of logic'
-  const [gens, setGens] = React.useState(null);
-  const [selectedGens, setSelectedGens] = React.useState(() => new Set());
+  
 
   if (gens == null) {
     getGens(setGens);
   }
 
-  console.log(selectedGens)
-  //console.log(gens.map('String'))
-  // HTML
   return (
     <div>
       <h1>Instructions</h1>
@@ -28,15 +24,8 @@ function LeftColumn() {
       ) : (
         <div />
       )}
-
-      <p className='has-text-centered'>
-        Selected gens: 
-        {
-          gens ? (gens.join().split(',')) : ('')
-        }
-      </p>
     </div>
   );
 }
-//() => {gens.map(String).split(',')}
+
 export default LeftColumn;
