@@ -27,7 +27,7 @@ function MiddleColumn() {
     setSelectedTypes([null, null]);
     setStreak(streak + 1);
   } else if (typesAreCorrect === false) {
-    alert('Incorrect types');
+    alert('Incorrect type! Correct type(s): ' + currentPokemon.type1 + " " + currentPokemon.type2);
     setTypesAreCorrect(null);
     setCurrentPokemon(null);
     setSelectedTypes([null, null]);
