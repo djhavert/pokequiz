@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import React from 'react';
 import CreateTypeButtons from './CreateTypeButtons';
 import SubmitButton from './SubmitButton';
-import chooseRandomPokeID from './chooseRandomPokeID'
+import chooseRandomPokeID from './chooseRandomPokeID';
 import { getPokemon } from './getPokemon';
 import { changeType } from './changeType';
 import { getTypes } from './getTypes';
@@ -18,7 +18,7 @@ function MiddleColumn(selectedGens) {
   if (pokeTypes === null) {
     getTypes(setPokeTypes);
   } else if (currentPokemon === null) {
-    const pokeID = chooseRandomPokeID({selectedGens});
+    const pokeID = chooseRandomPokeID({ selectedGens });
     getPokemon(setCurrentPokemon, pokeID);
   }
 
@@ -31,9 +31,13 @@ function MiddleColumn(selectedGens) {
     let messageWrong = 'Incorrect! ';
     if (currentPokemon.type2 == null) {
       messageWrong = messageWrong + 'Correct type is ' + currentPokemon.type1;
-    }
-    else {
-      messageWrong = messageWrong + 'Correct types are ' + currentPokemon.type1 + ' and ' + currentPokemon.type2;
+    } else {
+      messageWrong =
+        messageWrong +
+        'Correct types are ' +
+        currentPokemon.type1 +
+        ' and ' +
+        currentPokemon.type2;
     }
     alert(messageWrong);
     setTypesAreCorrect(null);
@@ -45,6 +49,11 @@ function MiddleColumn(selectedGens) {
   return (
     <div>
       <img
+        style={{
+          width: 475,
+          aspectRatio: 1,
+          alignSelf: 'center',
+        }}
         src={
           currentPokemon === null
             ? 'https://wiki.p-insurgence.com/images/0/09/722.png'
