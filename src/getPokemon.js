@@ -13,6 +13,7 @@ export async function getPokemon(setCurrentPokemon, number) {
     .then((response) => response.json())
     .then((data) => {
       setCurrentPokemon({
+        name: data.forms[0].name,
         img: data.sprites.other['official-artwork'].front_default,
         type1: data.types[0].type.name,
         type2: data.types.length === 2 ? data.types[1].type.name : null,
