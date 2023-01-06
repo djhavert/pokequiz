@@ -48,19 +48,23 @@ function MiddleColumn(selectedGens) {
 
   return (
     <div>
-      <img
-        style={{
-          width: 475,
-          aspectRatio: 1,
-          alignSelf: 'center',
-        }}
-        src={
-          currentPokemon === null
-            ? 'https://wiki.p-insurgence.com/images/0/09/722.png'
-            : currentPokemon.img
-        }
-        alt='pokemon'
-      ></img>
+      <div className='columns is-centered'>
+        <img
+          style={{
+            width: 475,
+            aspectRatio: 1,
+            alignSelf: 'center',
+            justifyContent: 'center'
+          }}
+          src={
+            currentPokemon === null
+              ? 'https://wiki.p-insurgence.com/images/0/09/722.png'
+              : currentPokemon.img
+          }
+          alt='pokemon'
+        ></img>
+      </div>
+      
       <b />
       <div className='columns is-centered'>
         <h1 className='title'>{currentPokemon ? currentPokemon.name : ''}</h1>
