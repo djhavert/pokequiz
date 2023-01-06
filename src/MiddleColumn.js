@@ -48,7 +48,7 @@ function MiddleColumn(selectedGens) {
 
   return (
     <div>
-      <div className='columns is-centered'>
+      <div className='has-text-centered'>
         <img
           style={{
             width: 475,
@@ -66,7 +66,7 @@ function MiddleColumn(selectedGens) {
       </div>
       
       <b />
-      <div className='columns is-centered'>
+      <div className='has-text-centered'>
         <h1 className='title'>{currentPokemon ? currentPokemon.name : ''}</h1>
       </div>
       <p className='has-text-centered'>Select pokemon types:</p>
