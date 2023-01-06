@@ -62,10 +62,8 @@ function MiddleColumn(selectedGens) {
         alt='pokemon'
       ></img>
       <b />
-      <div className="columns is-centered">
-        <h1 className="title">
-          {(currentPokemon) ? (currentPokemon.name) : ("")}
-        </h1>
+      <div className='columns is-centered'>
+        <h1 className='title'>{currentPokemon ? currentPokemon.name : ''}</h1>
       </div>
       <p className='has-text-centered'>Select pokemon types:</p>
 
