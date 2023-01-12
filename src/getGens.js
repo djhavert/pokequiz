@@ -13,7 +13,7 @@ export async function getGens(setGens) {
     .then((response) => response.json())
     .then((data) => {
       const gens = [];
-      for (let gen = 1; gen <= data.count; gen++) {
+      for (let gen = 1; gen <= 8; gen++) {
         gens.push(gen);
       }
       setGens(gens);
