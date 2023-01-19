@@ -1,7 +1,7 @@
 import PokeIDsByGen from './PokeIDsByGen'
 
 function chooseRandomPokeID({selectedGens}) {
-  selectedGens = selectedGens.selectedGens;
+  //selectedGens = selectedGens.selectedGens;
   if (selectedGens === null) {
     return 1;
   }
