@@ -6,11 +6,7 @@ import GameThirdColumn from './GameThirdColumn';
 import { getPokemon } from './getPokemon';
 import { getTypes } from './getTypes';
 
-
-function GameScreen({
-  selectedGens,
-  setIsPlaying
-}) {
+function GameScreen({ selectedGens, setIsPlaying }) {
   const [selectedTypes, setSelectedTypes] = React.useState([null, null]);
   const [currentPokemon, setCurrentPokemon] = React.useState(null);
   const [pokeTypes, setPokeTypes] = React.useState(null);
@@ -28,11 +24,9 @@ function GameScreen({
   if (typesAreCorrect !== null) {
     setTypesAreCorrect(null);
     typesAreCorrect ? setStreak(streak + 1) : setStreak(0);
+    if (typesAreCorrect && localStorage.getItem('highScore') < streak + 1)
+      localStorage.setItem('highScore', streak + 1);
     setSeeResults(true);
-    //setCurrentPokemon(null);
-    //setSelectedTypes([null, null]);
-    
-    //setTypesAreCorrect(null);
   }
 
   if (seeResults === false) {
@@ -42,18 +36,12 @@ function GameScreen({
     setTypesAreCorrect(null);
   }
 
-  return(
+  return (
     <div className='columns'>
+      <div className='column'></div>
       <div className='column'>
-        {/* <LeftColumn 
-          gens={gens}
-          setGens={setGens}
-          selectedGens={selectedGens}
-          setSelectedGens={setSelectedGens}
-        /> */}
-      </div>
-      <div className='column'>
-        <MiddleColumn 
+        <div style={{ marginTop: 80 }} />
+        <MiddleColumn
           selectedTypes={selectedTypes}
           setSelectedTypes={setSelectedTypes}
           currentPokemon={currentPokemon}
@@ -65,19 +53,13 @@ function GameScreen({
         />
       </div>
       <div className='column'>
-        <GameThirdColumn
-          streak={streak}
-        />
-        <button
-          className='button'
-          onClick={() => setIsPlaying(false)}
-        >
+        <GameThirdColumn streak={streak} />
+        <button className='button' onClick={() => setIsPlaying(false)}>
           Quit
         </button>
       </div>
     </div>
-  )
-  
+  );
 }
 
-export default GameScreen
+export default GameScreen;

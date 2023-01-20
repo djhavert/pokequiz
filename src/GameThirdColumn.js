@@ -1,12 +1,10 @@
 import React from 'react';
 
-function GameThirdColumn({
-  streak
-}) {
-
+function GameThirdColumn({ streak }) {
   return (
     <div>
       <p>streak: {streak}</p>
+      <p>high Score: {localStorage.getItem('highScore')}</p>
     </div>
   );
 }
@@ -14,11 +12,9 @@ function GameThirdColumn({
 function backgroundColor(prevTypesAreCorrect) {
   if (prevTypesAreCorrect) {
     return '#ccffcc';
-  }
-  else if (prevTypesAreCorrect === false) {
+  } else if (prevTypesAreCorrect === false) {
     return '#ffb3b3';
-  }
-  else return;
+  } else return;
 }
 
 export default GameThirdColumn;
