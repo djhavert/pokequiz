@@ -1,38 +1,42 @@
 import React from 'react';
 import colorChart from './colorChart';
+import GuessButton from './GuessButton';
 
 function ShowTypeResults({
   setSeeResults,
   selectedTypes,
-  currentPokemon  
+  currentPokemon,
+  streak,
 }) {
-
-  
-
   return (
     <div>
       <div>
-        <button 
-          className="button is-static"
-          style={{ backgroundColor: buttonColor(currentPokemon.type1, selectedTypes) }}
-        >
-          {currentPokemon.type1}
-        </button>
-        {currentPokemon.type2 ? (
-          <button 
-            className="button is-static"
-            style={{ backgroundColor: buttonColor(currentPokemon.type2, selectedTypes) }}
+        <GuessButton setSeeResults={setSeeResults} streak={streak} />
+        <div style={{ height: 50 }}></div>
+        <div className='buttons'>
+          <button
+            className='button is-static'
+            style={{
+              backgroundColor: buttonColor(currentPokemon.type1, selectedTypes),
+            }}
           >
-            {currentPokemon.type2}
+            {currentPokemon.type1}
           </button>
-        ) : ('')
-        }
+          {currentPokemon.type2 && (
+            <button
+              className='button is-static'
+              style={{
+                backgroundColor: buttonColor(
+                  currentPokemon.type2,
+                  selectedTypes
+                ),
+              }}
+            >
+              {currentPokemon.type2}
+            </button>
+          )}
+        </div>
       </div>
-
-      <NextButton
-        setSeeResults={setSeeResults}
-      />
-
     </div>
   );
 }
@@ -43,33 +47,12 @@ function buttonColor(type, selectedTypes) {
   } else return;
 }
 
-function NextButton({setSeeResults}) {
-  return (
-    <button
-      className='button is-centered is-light is-primary'
-      style={{
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-        height: '30%',
-      }}
-      onClick={() =>
-        setSeeResults(false)
-      }
-    >
-      Next
-    </button>
-  );
-}
-
 function backgroundColor(prevTypesAreCorrect) {
   if (prevTypesAreCorrect) {
     return '#ccffcc';
-  }
-  else if (prevTypesAreCorrect === false) {
+  } else if (prevTypesAreCorrect === false) {
     return '#ffb3b3';
-  }
-  else return;
+  } else return;
 }
 
 export default ShowTypeResults;
