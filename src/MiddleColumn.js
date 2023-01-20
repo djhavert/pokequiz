@@ -5,16 +5,15 @@ import ShowTypeResults from './ShowTypeResults';
 import { changeType } from './changeType';
 
 function MiddleColumn({
-  selectedTypes, 
+  selectedTypes,
   setSelectedTypes,
   currentPokemon,
   pokeTypes,
   setTypesAreCorrect,
   seeResults,
   setSeeResults,
+  streak,
 }) {
-  
-
   return (
     <div>
       <div className='has-text-centered'>
@@ -23,7 +22,7 @@ function MiddleColumn({
             width: 475,
             aspectRatio: 1,
             alignSelf: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
           }}
           src={
             currentPokemon === null
@@ -33,7 +32,7 @@ function MiddleColumn({
           alt='pokemon'
         ></img>
       </div>
-      
+
       <b />
       <div className='has-text-centered'>
         <h1 className='title'>{currentPokemon ? currentPokemon.name : ''}</h1>
@@ -55,12 +54,13 @@ function MiddleColumn({
           setSeeResults={setSeeResults}
           selectedTypes={selectedTypes}
           currentPokemon={currentPokemon}
+          streak={streak}
         />
       ) : (
         <SubmitButton
-        setTypesAreCorrect={setTypesAreCorrect}
-        selectedTypes={selectedTypes}
-        currentPokemon={currentPokemon}
+          setTypesAreCorrect={setTypesAreCorrect}
+          selectedTypes={selectedTypes}
+          currentPokemon={currentPokemon}
         />
       )}
     </div>
