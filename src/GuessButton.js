@@ -24,7 +24,7 @@ export default function GuessButton({ setSeeResults, streak }) {
       }}
       onClick={() => setSeeResults(false)}
     >
-      PISS
+      New game
     </button>
   );
 }
