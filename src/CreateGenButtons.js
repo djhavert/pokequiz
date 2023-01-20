@@ -1,19 +1,19 @@
-import React from "react";
-import colorChart from "./colorChart";
+import React from 'react';
+import colorChart from './colorChart';
 
 function CreateGenButtons({ gens, selectedGens, setSelectedGens }) {
   return (
-    <div className="buttons">
-        {gens.map((gen) => {
-          return (
-            <GenButton
-              key={gen}
-              gen={gen}
-              changeGens={() => changeGens(gen, selectedGens, setSelectedGens)}
-              selectedGens={selectedGens}
-            />
-          );
-        })}
+    <div className='buttons is-centered'>
+      {gens.map((gen) => {
+        return (
+          <GenButton
+            key={gen}
+            gen={gen}
+            changeGens={() => changeGens(gen, selectedGens, setSelectedGens)}
+            selectedGens={selectedGens}
+          />
+        );
+      })}
     </div>
   );
 }
@@ -23,7 +23,7 @@ function changeGens(gen, selectedGens, setSelectedGens) {
     // If gen is already selected
     // Remove gen from set
     const next = new Set(selectedGens);
-    next.delete(gen)
+    next.delete(gen);
     setSelectedGens(next);
   } else {
     // Add gen to set
@@ -34,8 +34,10 @@ function changeGens(gen, selectedGens, setSelectedGens) {
 function GenButton({ gen, changeGens, selectedGens }) {
   return (
     <button
-      className="button"
-      style={{ backgroundColor: (selectedGens.has(gen) ? ('lightgreen') : ('lightpink')) }}
+      className='button'
+      style={{
+        backgroundColor: selectedGens.has(gen) ? 'lightgreen' : 'white',
+      }}
       onClick={() => changeGens(gen)}
     >
       {gen}
