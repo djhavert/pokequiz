@@ -17,10 +17,9 @@ function TypeButton({ type, changeType, selectedTypes }) {
 function buttonColor(type, selectedTypes) {
   if (selectedTypes[0] === type || selectedTypes[1] === type) {
     return colorChart[type];
+  } else {
+    return colorChart[type + '_light'];
   }
-  else {
-    return colorChart[type+'_light']
-  };
 }
 
 export default TypeButton;
