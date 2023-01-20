@@ -26,6 +26,7 @@ function GameScreen({
   }
 
   if (typesAreCorrect !== null) {
+    setTypesAreCorrect(null);
     typesAreCorrect ? setStreak(streak + 1) : setStreak(0);
     setSeeResults(true);
     //setCurrentPokemon(null);
@@ -35,18 +36,10 @@ function GameScreen({
   }
 
   if (seeResults === false) {
+    setSeeResults(null);
     setCurrentPokemon(null);
     setSelectedTypes([null, null]);
     setTypesAreCorrect(null);
-    setSeeResults(null);
-  }
-
-  if (currentPokemon==='undefined') {
-    return(
-      <div>
-        Hello World.
-      </div>
-    )
   }
 
   return(

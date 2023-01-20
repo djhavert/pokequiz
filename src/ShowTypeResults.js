@@ -1,4 +1,5 @@
 import React from 'react';
+import colorChart from './colorChart';
 
 function ShowTypeResults({
   setSeeResults,
@@ -42,7 +43,7 @@ function buttonColor(type, selectedTypes) {
   } else return;
 }
 
-function NextButton(setSeeResults) {
+function NextButton({setSeeResults}) {
   return (
     <button
       className='button is-centered is-light is-primary'

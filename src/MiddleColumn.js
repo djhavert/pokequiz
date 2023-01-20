@@ -1,6 +1,7 @@
 import React from 'react';
 import CreateTypeButtons from './CreateTypeButtons';
 import SubmitButton from './SubmitButton';
+import ShowTypeResults from './ShowTypeResults';
 import { changeType } from './changeType';
 
 function MiddleColumn({
