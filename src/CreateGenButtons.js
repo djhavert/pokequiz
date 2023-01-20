@@ -21,10 +21,12 @@ function CreateGenButtons({ gens, selectedGens, setSelectedGens }) {
 function changeGens(gen, selectedGens, setSelectedGens) {
   if (selectedGens.has(gen)) {
     // If gen is already selected
-    // Remove gen from set
-    const next = new Set(selectedGens);
-    next.delete(gen);
-    setSelectedGens(next);
+    // Remove gen from set, but not if there is only 1 gen selected
+    if (selectedGens.size > 1) {
+      const next = new Set(selectedGens);
+      next.delete(gen);
+      setSelectedGens(next);
+    }
   } else {
     // Add gen to set
     setSelectedGens(new Set(selectedGens).add(gen));

@@ -1,5 +1,4 @@
 export default function GuessButton({ setSeeResults, streak }) {
-  console.log(streak);
   return streak !== 0 ? (
     <button
       className='button is-centered is-light is-primary'

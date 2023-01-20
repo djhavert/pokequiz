@@ -44,8 +44,8 @@ function IntroScreen({ selectedGens, setSelectedGens, setIsPlaying }) {
           Start
         </button>
 
-        {localStorage.getItem('highScore') < 20 &&
-        localStorage.getItem('highScore') !== null ? (
+        {localStorage.getItem('highScore') < 20 ||
+        localStorage.getItem('highScore') === null ? (
           <div style={{ marginTop: 30 }}>
             <img
               src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/151.png'
