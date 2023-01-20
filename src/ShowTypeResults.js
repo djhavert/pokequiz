@@ -13,7 +13,7 @@ function ShowTypeResults({
       <div>
         <GuessButton setSeeResults={setSeeResults} streak={streak} />
         <div style={{ height: 50 }}></div>
-        <div className='buttons'>
+        <div className='buttons is-centered'>
           <button
             className='button is-static'
             style={{
