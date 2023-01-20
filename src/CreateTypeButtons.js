@@ -8,7 +8,7 @@ function CreateTypeButtons({
   setSelectedTypes,
 }) {
   return (
-    <div className='buttons'>
+    <div className='buttons is-centered'>
       {types.map((type) => {
         return (
           <TypeButton
