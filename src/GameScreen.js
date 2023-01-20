@@ -23,9 +23,10 @@ function GameScreen({ selectedGens, setIsPlaying }) {
 
   if (typesAreCorrect !== null) {
     setTypesAreCorrect(null);
-    typesAreCorrect ? setStreak(streak + 1) : setStreak(0);
-    if (typesAreCorrect && localStorage.getItem('highScore') < streak + 1)
-      localStorage.setItem('highScore', streak + 1);
+    const new_streak = streak + 1;
+    typesAreCorrect ? setStreak(new_streak) : setStreak(0);
+    if (typesAreCorrect && localStorage.getItem('highScore') < new_streak)
+      localStorage.setItem('highScore', new_streak);
     setSeeResults(true);
   }
 
