@@ -28,5 +28,7 @@ function isCorrect(setTypesAreCorrect, selectedTypes, currentPokemon) {
     !selectedTypes.includes(currentPokemon.type2)
   )
     setTypesAreCorrect(false);
+  else if (selectedTypes.length === 2 && !currentPokemon.type2)
+    return setTypesAreCorrect(false);
   else setTypesAreCorrect(true);
 }
