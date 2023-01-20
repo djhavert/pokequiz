@@ -9,7 +9,8 @@ function MiddleColumn({
   currentPokemon,
   pokeTypes,
   setTypesAreCorrect,
-  streak
+  seeResults,
+  setSeeResults,
 }) {
   
 
@@ -48,13 +49,19 @@ function MiddleColumn({
       ) : (
         <div />
       )}
-      <br />
-      <SubmitButton
+      {seeResults ? (
+        <ShowTypeResults
+          setSeeResults={setSeeResults}
+          selectedTypes={selectedTypes}
+          currentPokemon={currentPokemon}
+        />
+      ) : (
+        <SubmitButton
         setTypesAreCorrect={setTypesAreCorrect}
         selectedTypes={selectedTypes}
         currentPokemon={currentPokemon}
-      />
-      <p>streak: {streak}</p>
+        />
+      )}
     </div>
   );
 }

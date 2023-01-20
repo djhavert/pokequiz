@@ -2,6 +2,7 @@ import React from 'react';
 
 import MiddleColumn from './MiddleColumn';
 import chooseRandomPokeID from './chooseRandomPokeID';
+import GameThirdColumn from './GameThirdColumn';
 import { getPokemon } from './getPokemon';
 import { getTypes } from './getTypes';
 
@@ -15,6 +16,7 @@ function GameScreen({
   const [pokeTypes, setPokeTypes] = React.useState(null);
   const [typesAreCorrect, setTypesAreCorrect] = React.useState(null);
   const [streak, setStreak] = React.useState(0);
+  const [seeResults, setSeeResults] = React.useState(null);
 
   if (pokeTypes === null) {
     getTypes(setPokeTypes);
@@ -23,28 +25,20 @@ function GameScreen({
     getPokemon(setCurrentPokemon, pokeID);
   }
 
-  if (typesAreCorrect) {
-    setTypesAreCorrect(null);
+  if (typesAreCorrect !== null) {
+    typesAreCorrect ? setStreak(streak + 1) : setStreak(0);
+    setSeeResults(true);
+    //setCurrentPokemon(null);
+    //setSelectedTypes([null, null]);
+    
+    //setTypesAreCorrect(null);
+  }
+
+  if (seeResults === false) {
     setCurrentPokemon(null);
     setSelectedTypes([null, null]);
-    setStreak(streak + 1);
-  } else if (typesAreCorrect === false) {
-    let messageWrong = 'Incorrect! ';
-    if (currentPokemon.type2 == null) {
-      messageWrong = messageWrong + 'Correct type is ' + currentPokemon.type1;
-    } else {
-      messageWrong =
-        messageWrong +
-        'Correct types are ' +
-        currentPokemon.type1 +
-        ' and ' +
-        currentPokemon.type2;
-    }
-    alert(messageWrong);
     setTypesAreCorrect(null);
-    setCurrentPokemon(null);
-    setSelectedTypes([null, null]);
-    setStreak(0);
+    setSeeResults(null);
   }
 
   if (currentPokemon==='undefined') {
@@ -73,10 +67,14 @@ function GameScreen({
           pokeTypes={pokeTypes}
           setTypesAreCorrect={setTypesAreCorrect}
           streak={streak}
+          seeResults={seeResults}
+          setSeeResults={setSeeResults}
         />
       </div>
       <div className='column'>
-        Third column
+        <GameThirdColumn
+          streak={streak}
+        />
         <button
           className='button'
           onClick={() => setIsPlaying(false)}
